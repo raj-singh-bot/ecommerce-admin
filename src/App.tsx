@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Login from './pages/Login/Login';
+import { Navigate, Route, Routes} from 'react-router-dom'
+import Home from './pages/Home/Home';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
+  const hasJWT = localStorage.getItem('auth-token') ? true : false;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route  path='/'  element={<PrivateRoute Components={<Home/>} />} />
+        <Route path="/login" element={!hasJWT ? <Login /> : <Navigate replace to='/'/>} />
+      </Routes>
     </div>
   );
 }
