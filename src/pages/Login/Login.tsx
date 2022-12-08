@@ -50,7 +50,6 @@ function Login() {
     } catch (error: any) {
       console.log(error)
       toast({
-        // title: 'Account created.',
         description: `${error.response.data.error}`,
         status: 'error',
         duration: 5000,
@@ -85,7 +84,6 @@ function Login() {
             <Text>
               <br></br>
             </Text>
-            {/* <Text color="red">{errorMsg}</Text> */}
           </Box>
           <Box my={8} textAlign="left">
             <Formik initialValues={defaultValues}
@@ -133,15 +131,9 @@ function Login() {
                             width="full"
                             mt={4}
                             type='submit'
-                            // onClick={() => {
-                            //   setIsSubmitting(true);
-                            //   login();
-                            // }}
                         >
                             Sign In
                         </Button>
-                        //   <button style={{color: '#fff', marginTop: '4px', backgroundColor: 'green'}} 
-                        //         type="submit" className="btn btn-success">Sign In</button>
                         )}
                     </Form>
                 )}
