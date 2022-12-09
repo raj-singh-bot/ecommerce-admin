@@ -37,10 +37,27 @@ const Products = (props:any) => {
   }, []);
 
   useEffect(() => {
-    if( !(masterProducts).length)
+    if( !(masterProducts).length){
     dispatch({ type: REQUEST_MASTER_PRODUCT})
+    }
+    
   }, [])
 
+  useEffect(() => {
+    if(message== "Unauthorized! Access Token was expired!"){
+      toast({
+        description: `${message}`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      })
+
+      localStorage.removeItem('auth-token')
+      // eslint-disable-next-line no-restricted-globals
+      location.reload()
+    }
+  },[])
+  
   const handleClose = () => {
     setShow(false);
     
@@ -164,7 +181,7 @@ const Products = (props:any) => {
           onChange={(e) => setCategoryId(e.target.value)}
         >
           <option>select category</option>
-          {createCategoryList(Category?.categoryList)?.map((option:any, index:any) => (
+          {createCategoryList(Category)?.map((option:any, index:any) => (
             <option key={index} value={option.value}>
               {option.name}
             </option>

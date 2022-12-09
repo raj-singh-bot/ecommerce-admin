@@ -32,7 +32,7 @@ function* requestMasterProduct(action: Record<string, any>): any {
         } else if (get(error, "response.status") === 415) {
             message = error.response.data.message;
         }
-        yield put({ type: ERROR_GET_MASTER_PRODUCT, payload: message });
+        yield put({ type: ERROR_GET_MASTER_PRODUCT, payload: error.response.data.message });
     }
 }
 

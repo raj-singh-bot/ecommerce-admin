@@ -75,16 +75,16 @@ const products = (state = initialState, action: Record<string, any>) => {
                 }),
             };
 
-            case SUCCESS_DELETE_PRODUCT:
-                console.log(action.payload.productId)
-                return {
-                    ...state,
-                    busy: false,
-                    message: "",
-                    masterProducts: state.masterProducts.filter(
-                        (mg:any) => (mg._id) !== action.payload.productId
-                    ),
-                };
+        case SUCCESS_DELETE_PRODUCT:
+            console.log(action.payload.productId)
+            return {
+                ...state,
+                busy: false,
+                message: "",
+                masterProducts: state.masterProducts.filter(
+                    (mg:any) => (mg._id) !== action.payload.productId
+                ),
+            };
     
         case ERROR_GET_MASTER_PRODUCT:
         case ERROR_CREATE_MASTER_PRODUCT:
